@@ -1,17 +1,42 @@
-// Cat Clicker Take 1
+// Cat Clicker Take 2
 
-var clicks = 0;
+var clicks1 = 0;
+var clicks2 = 0;
 
-$('#cat').click(function(e) {
+var $catName1 = $('#catName1');
+$catName1.text('Pinky');
 
-    var $message = $('#message');
+var $catName2 = $('#catName2');
+$catName2.text('Dave');
+
+
+$('#catPic1').click(function(e) {
+
+	$('#catName1').text = 'Fluffy';
+
+	console.log("Cat 1 clicked");
+    var $message1 = $('#message1');
 
     // clear out old data before new request
-    $message.text("");
+    $message1.text("");
 
-    clicks++;
-    console.log("Cat clicks: " + clicks);
+    clicks1++;
 
-    $message.text("Cat clicks: " + clicks);
+    $message1.text("Clicks: " + clicks1);
+
+});
+
+$('#catPic2').click(function(e) {
+
+
+	console.log("Cat 2 clicked");
+    var $message2 = $('#message2');
+
+    // clear out old data before new request
+    $message2.text("");
+
+    clicks2++;
+
+    $message2.text("Clicks: " + clicks2);
 
 });

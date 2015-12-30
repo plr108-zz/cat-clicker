@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Cat Clicker Take 1</title>
+    <title>Cat Clicker Take 2</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
 </head>
+
 <body>
 
-    <h1>Click on the cat<h1>
-    <img id="cat" src="images/cat.jpg">
-    <h1 id="message">Cat clicks: 0<h1>
+    <div id="header"><h1>Click on a cat<h1></div>
+
+    <div class="flex-container">
+
+		<div class="cat-container" id="cat-container1">
+			<h2 id="catName1">Cat Name</h2>
+			<img class="catPic" id="catPic1" src="images/cat1.jpg">
+			<h2 id="message1">Clicks: 0<h2>
+		</div>
+
+		<div class="cat-container" id="cat-container2">
+			<h2 id="catName2">Cat Name</h2>
+			<img class="catPic" id="catPic2" src="images/cat2.jpg">
+			<h2 id="message2">Clicks: 0<h2>
+		</div>
+
+	</div>
 
     <script src="js/libs/jquery.min.js"></script>
     <script src="js/script.js"></script>
 </body>
-</html>
