@@ -1,5 +1,17 @@
 // Cat Clicker Take 3 - Cat Clicker Premium
 
+var Cat = function(name, pic) {
+
+	var obj = Object.create(Cat.prototype);
+
+	obj.name = name;
+	obj.pic = pic;
+	obj.clicks = 0;
+
+	return obj;
+};
+
+/*
 var clicks1 = 0;
 var clicks2 = 0;
 
@@ -40,3 +52,4 @@ $('#catPic2').click(function(e) {
     $message2.text("Clicks: " + clicks2);
 
 });
+*/
