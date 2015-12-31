@@ -1,4 +1,4 @@
-// Cat Clicker Take 2
+// Cat Clicker Take 3 - Cat Clicker Premium
 
 var clicks1 = 0;
 var clicks2 = 0;
