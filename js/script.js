@@ -27,6 +27,7 @@ for(i=0; i < allCats.length; i++)
 	var activeCatIndex = -1;
 
 	elem.addEventListener('click', (function(numCopy) {
+
     return function() {
 
         var activeCatHeaderDiv = '<div id="active-cat-header"><h1>Your Cat: ' + allCats[numCopy].name + '</h1></div>';
@@ -41,7 +42,6 @@ for(i=0; i < allCats.length; i++)
 		$("#active-cat-count").replaceWith(activeCatCountDiv);
 
 		$( "#active-cat-pic" ).click(function() {
-  			console.log( "click." );
   			allCats[numCopy].clicks++;
   			var activeCatCountDiv = '<div id="active-cat-count"><h1>Clicks: ' + allCats[numCopy].clicks + '</h1></div>';
 			$("#active-cat-count").replaceWith(activeCatCountDiv);
