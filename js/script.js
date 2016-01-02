@@ -49,6 +49,3 @@ for(i=0; i < allCats.length; i++)
     };
 	})(i));
 }
-
-// FIX THIS
-
