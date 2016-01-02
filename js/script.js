@@ -11,45 +11,44 @@ var Cat = function(name, pic) {
 	return obj;
 };
 
-/*
-var clicks1 = 0;
-var clicks2 = 0;
+var allCats = [];
 
-var $catName1 = $('#catName1');
-$catName1.text('Pinky');
+allCats[0] = Cat("Arlene","arlene");
+allCats[1] = Cat("Azrael","azrael");
+allCats[2] = Cat("Beerus","beerus");
+allCats[3] = Cat("Butch","butch");
+allCats[4] = Cat("Cat(dog)","catdog");
 
-var $catName2 = $('#catName2');
-$catName2.text('Dave');
+for(i=0; i < allCats.length; i++)
+{
+	var catDiv = '<div class="cat" id="cat-' + i + '""><h2>' + allCats[i].name + '</h2></div>';
+	$("#cat-list").append(catDiv);
+	var elem = document.getElementById("cat-"+i);
+	var activeCatIndex = -1;
 
+	elem.addEventListener('click', (function(numCopy) {
+    return function() {
 
-$('#catPic1').click(function(e) {
+        var activeCatHeaderDiv = '<div id="active-cat-header"><h1>Your Cat: ' + allCats[numCopy].name + '</h1></div>';
+		$("#active-cat-header").replaceWith(activeCatHeaderDiv);
 
-	$('#catName1').text = 'Fluffy';
+		var activeCatDiv = '<div id="active-cat-pic"><img src="images/' + allCats[numCopy].pic + '.jpg"></div>';
+		$("#active-cat-pic").replaceWith(activeCatDiv);
 
-	console.log("Cat 1 clicked");
-    var $message1 = $('#message1');
+		activeCatIndex = numCopy;
 
-    // clear out old data before new request
-    $message1.text("");
+		var activeCatCountDiv = '<div id="active-cat-count"><h1>Clicks: ' + allCats[numCopy].clicks + '</h1></div>';
+		$("#active-cat-count").replaceWith(activeCatCountDiv);
 
-    clicks1++;
+		$( "#active-cat-pic" ).click(function() {
+  			console.log( "click." );
+  			allCats[numCopy].clicks++;
+  			var activeCatCountDiv = '<div id="active-cat-count"><h1>Clicks: ' + allCats[numCopy].clicks + '</h1></div>';
+			$("#active-cat-count").replaceWith(activeCatCountDiv);
+		});
+    };
+	})(i));
+}
 
-    $message1.text("Clicks: " + clicks1);
+// FIX THIS
 
-});
-
-$('#catPic2').click(function(e) {
-
-
-	console.log("Cat 2 clicked");
-    var $message2 = $('#message2');
-
-    // clear out old data before new request
-    $message2.text("");
-
-    clicks2++;
-
-    $message2.text("Clicks: " + clicks2);
-
-});
-*/
