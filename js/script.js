@@ -1,5 +1,84 @@
-// Cat Clicker Take 3 - Cat Clicker Premium
+// Cat Clicker Take 4 - Cat Clicker Premium using Model-View-Octopus
 
+$(function(){
+
+	var model = {
+		init: function() {
+			localStorage.clear();
+			localStorage.cats = JSON.stringify([]);
+		},
+
+		add: function(obj) {
+			var data = JSON.parse(localStorage.cats);
+			data.push(obj);
+			localStorage.cats = JSON.stringify(data);
+		},
+
+		update: function() {
+
+		},
+
+		getCats: function() {
+			return JSON.parse(localStorage.cats);
+		}
+	};
+
+	var listView = {
+		init: function() {
+			this.catList = $('#cat-list');
+		},
+		render: function() {
+			var htmlStr = '<div id="cat-list-header"><h1>Select Your Cat</h1></div>';
+			var i = 0;
+			octopus.getCats().forEach(function(cat){
+				htmlStr += '<div class="cat" id="cat-' + i + '"><h2>' + cat.name + '</h2></div>';
+				i++;
+			});
+
+			this.catList.html(htmlStr);
+		}
+	};
+
+	var activeCatView = {
+		init: function() {
+			// do nothing, no Active Cat to start
+		}
+	};
+
+	var octopus = {
+
+		addCat: function(name) {
+			model.add({
+				name: name,
+				clicks: 0
+			});
+		},
+
+		getCats: function() {
+			return model.getCats();
+		},
+
+		init: function() {
+			model.init();
+			listView.init();
+
+			//create our cats
+			octopus.addCat("Arlene");
+			octopus.addCat("Azrael");
+			octopus.addCat("Beerus");
+			octopus.addCat("Butch");
+			octopus.addCat("Cat(dog)");
+
+			listView.render();
+		}
+	};
+
+	// initialize octopus
+	octopus.init();
+
+});
+
+/* OLD VERSION -----------------------
 var Cat = function(name, pic) {
 
 	var obj = Object.create(Cat.prototype);
@@ -49,3 +128,4 @@ for(i=0; i < allCats.length; i++)
     };
 	})(i));
 }
+------------ END OLD VERSION */
