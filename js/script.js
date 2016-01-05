@@ -5,23 +5,28 @@ var model = {
 	cats: [
 		{
 			name : 'Arlene',
-			clicks : 0
+			clicks : 0,
+			imageURL: 'images/Arlene.jpg'
 		},
 		{
 			name : 'Azrael',
-			clicks : 0
+			clicks : 0,
+			imageURL: 'images/Azrael.jpg'
 		},
 		{
 			name : 'Beerus',
-			clicks : 0
+			clicks : 0,
+			imageURL: 'images/Beerus.jpg'
 		},
 		{
 			name : 'Butch',
-			clicks : 0
+			clicks : 0,
+			imageURL: 'images/Butch.jpg'
 		},
 		{
 			name : 'CatDog',
-			clicks : 0
+			clicks : 0,
+			imageURL: 'images/CatDog.jpg'
 		}
 	]
 };
@@ -75,7 +80,7 @@ var activeCatView = {
 		this.activeCatClicks.append('<h1>Clicks: ' + activeCat.clicks + '</h1>');
 
 		this.activeCatPic.empty();
-		this.activeCatPic.append('<img id="active-cat-img" src="images/' + activeCat.name + '.jpg">');
+		this.activeCatPic.append('<img id="active-cat-img" src="' + activeCat.imageURL + '">');
 	}
 };
 
@@ -85,12 +90,10 @@ var octopus = {
 	},
 
 	getActiveCat: function() {
-
 		return model.activeCat;
 	},
 
 	setActiveCat: function(cat) {
-
 		model.activeCat = cat;
 	},
 
