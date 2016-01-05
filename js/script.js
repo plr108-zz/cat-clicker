@@ -20,7 +20,7 @@ var model = {
 			clicks : 0
 		},
 		{
-			name : 'Cat(dog)',
+			name : 'CatDog',
 			clicks : 0
 		}
 	]
@@ -39,13 +39,16 @@ var listView = {
 			var cat = cats[i];
 
 			this.catList.append('<div class="cat" id="' + cat.name + '"><h2>' + cat.name + '</h2></div>');
-			elem = document.getElementById(cat.name);
-			elem.addEventListener('click', (function (meow) {
+
+			// using a IFFE and the jQuery .click() method
+			jQueryElem = $('#' + cat.name);
+			jQueryElem.click((function (meow) {
 				return function() {
 					octopus.setActiveCat(meow);
 					activeCatView.render();
 				};
 			})(cat));
+
 		}
 	}
 };
@@ -56,7 +59,7 @@ var activeCatView = {
 		this.activeCatPicVanilla = document.getElementById('active-cat-pic');
 		this.activeCatPic = $('#active-cat-pic');
 		this.activeCatClicks = $('#active-cat-clicks');
-		this.activeCatPicVanilla.addEventListener('click', function() {
+		this.activeCatPic.click(function() {
 			octopus.updateClicks();
 		});
 	},
