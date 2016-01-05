@@ -64,7 +64,6 @@ var activeCatView = {
 	render: function() {
 
 		var activeCat = octopus.getActiveCat();
-		console.log("activeCat: " + activeCat.name);
 
 		this.activeCatHeader.empty();
 		this.activeCatHeader.append('<h1>Your Cat: ' + activeCat.name + '</h1>');
