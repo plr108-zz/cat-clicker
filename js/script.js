@@ -1,4 +1,4 @@
-// Cat Clicker Take 4 - Cat Clicker Premium using Model-View-Octopus
+// Cat Clicker Take 5 - Cat Clicker Premium Pro - Model-View-Octopus with Admin Mode
 
 var model = {
 	activeCat: null,
@@ -20,9 +20,9 @@ var model = {
 			imageURL: 'images/garfield.jpg'
 		},
 		{
-			name : 'Itchy',
+			name : 'Scratchy',
 			clicks : 0,
-			imageURL: 'images/itchy.jpg'
+			imageURL: 'images/scratchy.jpg'
 		},
 		{
 			name : 'Tom',
@@ -46,7 +46,7 @@ var listView = {
 
 			this.catList.append('<div class="cat" id="' + cat.name + '"><h2>' + cat.name + '</h2></div>');
 
-			// using a IFFE and the jQuery .click() method
+			// using an IFFE and the jQuery .click() method
 			jQueryElem = $('#' + cat.name);
 			jQueryElem.click((function (meow) {
 				return function() {
@@ -89,19 +89,19 @@ var adminView = {
 	init: function() {
 		this.admin = $('#admin');
 		this.admin.append('<button id="admin-button" type="button"><h1>Admin Mode: OFF</h1></button>');
-		this.admin.append('<p id="blurb"></p>');
+		this.admin.append('<p id="admin-welcome"></p>');
 		this.adminButton = $('#admin-button');
-		this.blurb = $('#blurb');
+		this.adminWelcome = $('#admin-welcome');
 		this.setButtonListener();
 	},
 
 	showAdminMode: function() {
-		this.blurb.empty();
-		this.blurb.append('<p id="blurb">Welcome to Admin Mode.</p>');
+		this.adminWelcome.empty();
+		this.adminWelcome.append('<p id="admin-welcome">Welcome to Admin Mode.</p>');
 	},
 
 	hideAdminMode: function() {
-		this.blurb.empty();
+		this.adminWelcome.empty();
 	},
 
 	setButtonListener: function() {
