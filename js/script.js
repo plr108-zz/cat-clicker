@@ -89,16 +89,19 @@ var adminView = {
 	init: function() {
 		this.admin = $('#admin');
 		this.admin.append('<button id="admin-button" type="button"><h1>Admin Mode: OFF</h1></button>');
+		this.admin.append('<p id="blurb"></p>');
 		this.adminButton = $('#admin-button');
+		this.blurb = $('#blurb');
 		this.setButtonListener();
 	},
 
 	showAdminMode: function() {
-		console.log("showAdminMode");
+		this.blurb.empty();
+		this.blurb.append('<p id="blurb">Welcome to Admin Mode.</p>');
 	},
 
 	hideAdminMode: function() {
-		console.log("hideAdminMode");
+		this.blurb.empty();
 	},
 
 	setButtonListener: function() {
@@ -117,9 +120,6 @@ var adminView = {
 			};
 		})(this.adminButton));
 	}
-
-
-
 };
 
 var octopus = {
