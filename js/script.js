@@ -5,29 +5,29 @@ var model = {
 	adminMode: false,
 	cats: [
 		{
-			name : 'Arlene',
-			clicks : 0,
-			imageURL: 'images/Arlene.jpg'
-		},
-		{
 			name : 'Azrael',
 			clicks : 0,
-			imageURL: 'images/Azrael.jpg'
+			imageURL: 'images/azrael.jpg'
 		},
 		{
-			name : 'Beerus',
+			name : 'Felix',
 			clicks : 0,
-			imageURL: 'images/Beerus.jpg'
+			imageURL: 'images/felix.jpg'
 		},
 		{
-			name : 'Butch',
+			name : 'Garfield',
 			clicks : 0,
-			imageURL: 'images/Butch.jpg'
+			imageURL: 'images/garfield.jpg'
 		},
 		{
-			name : 'CatDog',
+			name : 'Itchy',
 			clicks : 0,
-			imageURL: 'images/CatDog.jpg'
+			imageURL: 'images/itchy.jpg'
+		},
+		{
+			name : 'Tom',
+			clicks : 0,
+			imageURL: 'images/tom.jpg'
 		}
 	]
 };
