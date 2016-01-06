@@ -16,7 +16,7 @@ body {
 
 #cat-list {
   background-color: lightblue;
-  width: 45%;
+  width: 25%;
   float: left;
   height: 100%;
   text-align: center;
@@ -44,5 +44,12 @@ body {
   text-align: center;
   background-color: lavender;
   height: 100%;
-  width: 65%;
+  width: 50%;
+}
+
+#admin {
+  text-align: center;
+  background-color: #d3c6c6;
+  height: 100%;
+  width: 25%;
 }

@@ -2,6 +2,7 @@
 
 var model = {
 	activeCat: null,
+	adminMode: false,
 	cats: [
 		{
 			name : 'Arlene',
@@ -84,6 +85,43 @@ var activeCatView = {
 	}
 };
 
+var adminView = {
+	init: function() {
+		this.admin = $('#admin');
+		this.admin.append('<button id="admin-button" type="button"><h1>Admin Mode: OFF</h1></button>');
+		this.adminButton = $('#admin-button');
+		this.setButtonListener();
+	},
+
+	showAdminMode: function() {
+		console.log("showAdminMode");
+	},
+
+	hideAdminMode: function() {
+		console.log("hideAdminMode");
+	},
+
+	setButtonListener: function() {
+		this.adminButton.click((function(button) {
+			return function() {
+
+				button.empty();
+				var mode = octopus.getAdminModeStatus() ? "OFF" : "ON";
+				octopus.toggleAdminModeStatus();
+				button.append('<h1>Admin Mode: ' + mode + '</h1>');
+				if(mode === "ON") {
+					adminView.showAdminMode();
+				} else {
+					adminView.hideAdminMode();
+				}
+			};
+		})(this.adminButton));
+	}
+
+
+
+};
+
 var octopus = {
 	getCats: function() {
 		return model.cats;
@@ -102,9 +140,18 @@ var octopus = {
 		activeCatView.render();
 	},
 
+	getAdminModeStatus: function() {
+		return model.adminMode;
+	},
+
+	toggleAdminModeStatus: function() {
+		model.adminMode = !model.adminMode;
+	},
+
 	init: function() {
 		listView.init();
 		activeCatView.init();
+		adminView.init();
 	}
 };
 
