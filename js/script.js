@@ -35,33 +35,34 @@ var model = {
 var listView = {
 	init: function() {
 		this.catList = $('#cat-list');
-		this.render();
+		activeCatView.init();
+		this.render(true);
 	},
 
-	render: function() {
-
-		activeCatView.init();
+	render: function(firstRun) {
 
 		var cats = octopus.getCats();
 
 		this.catList.empty();
 		this.catList.append('<div id="cat-list-header"><h1>Select Your Cat</h1></div>');
 
-		// randCat used to set a random cat to show on startup
-		var randCat = Math.floor(Math.random() * 5);
+		if(firstRun) {
+			// randCat used to set a random cat to show on startup
+			var randCat = Math.floor(Math.random() * 5);
+		}
 
 		for (i = 0; i < cats.length; i++) {
 			var cat = cats[i];
 			this.catList.append('<div class="cat" id="' + cat.name + '"><h2>' + cat.name + '</h2></div>');
 
 			// set a random cat to show on startup
-			if(randCat === i) {
+			if(firstRun && randCat === i) {
 				octopus.setActiveCat(cat);
 				activeCatView.render();
 			}
 
 			jQueryElem = $('#' + cat.name);
-			// using an IFFE and the jQuery .click() method
+
 			jQueryElem.click((function (meow) {
 				return function() {
 					octopus.setActiveCat(meow);
@@ -77,6 +78,7 @@ var activeCatView = {
 		this.activeCatHeader = $('#active-cat-header');
 		this.activeCatPic = $('#active-cat-pic');
 		this.activeCatClicks = $('#active-cat-clicks');
+
 		this.activeCatPic.click(function() {
 			octopus.updateClicks();
 		});
@@ -134,8 +136,7 @@ var adminView = {
 			octopus.updateActiveCat(updatedName,updatedImageURL,updatedClicks);
 			adminView.toggleAdminMode();
 			activeCatView.render();
-			// TODO: fix this so random can isn't displayed after Admin edit
-			//listView.render();
+			listView.render(false);
 		});
 
 	},
@@ -177,7 +178,6 @@ var octopus = {
 	},
 
 	updateActiveCat: function(name,imageURL,clicks) {
-		console.log("HERE:" + name + ", " + imageURL + ", " + clicks);
 		model.activeCat.name = name;
 		model.activeCat.imageURL = imageURL;
 		model.activeCat.clicks = clicks;
@@ -197,7 +197,6 @@ var octopus = {
 	},
 
 	init: function() {
-
 		listView.init();
 		adminView.init();
 
