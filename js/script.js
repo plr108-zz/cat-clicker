@@ -35,7 +35,6 @@ var model = {
 var listView = {
 	init: function() {
 		this.catList = $('#cat-list');
-		this.catList.append('<div id="cat-list-header"><h1>Select Your Cat</h1></div>');
 		this.render();
 	},
 
@@ -44,6 +43,9 @@ var listView = {
 		activeCatView.init();
 
 		var cats = octopus.getCats();
+
+		this.catList.empty();
+		this.catList.append('<div id="cat-list-header"><h1>Select Your Cat</h1></div>');
 
 		// randCat used to set a random cat to show on startup
 		var randCat = Math.floor(Math.random() * 5);
@@ -132,6 +134,8 @@ var adminView = {
 			octopus.updateActiveCat(updatedName,updatedImageURL,updatedClicks);
 			adminView.toggleAdminMode();
 			activeCatView.render();
+			// TODO: fix this so random can isn't displayed after Admin edit
+			//listView.render();
 		});
 
 	},
