@@ -43,7 +43,6 @@ var listView = {
 
 		activeCatView.init();
 
-
 		var cats = octopus.getCats();
 
 		// randCat used to set a random cat to show on startup
@@ -67,7 +66,6 @@ var listView = {
 					activeCatView.render();
 				};
 			})(cat));
-
 		}
 	}
 };
@@ -75,7 +73,6 @@ var listView = {
 var activeCatView = {
 	init: function() {
 		this.activeCatHeader = $('#active-cat-header');
-		this.activeCatPicVanilla = document.getElementById('active-cat-pic');
 		this.activeCatPic = $('#active-cat-pic');
 		this.activeCatClicks = $('#active-cat-clicks');
 		this.activeCatPic.click(function() {
@@ -114,11 +111,29 @@ var adminView = {
 		this.adminWelcome.append('<p id="admin-welcome2">Change the details of your cat.</p>');
 
 		var activeCat = octopus.getActiveCat();
-		console.log(activeCat.name);
 
-		//this.adminWelcome.append('<h1>Name</h1><input type="text" name="name" value=' + activeCat.name +'>');
-		this.adminWelcome.append('<h1>Image</h1><input type="text" name="image-url" value="someURLstring">');
-		this.adminWelcome.append('<h1>Clicks</h1><input type="text" name="clicks" value="numClicks">');
+		this.adminWelcome.append('<h1>Name</h1><input type="text" id="admin-name" value="' + activeCat.name +'">');
+		this.adminWelcome.append('<h1>Image</h1><input type="text" id="admin-image-url" value="' + activeCat.imageURL + '"someURLstring">');
+		this.adminWelcome.append('<h1>Clicks</h1><input type="text" id="admin-clicks" value="' + activeCat.clicks + '">');
+		this.adminWelcome.append('<br><br><br><button id="admin-ok" type="button"><h1>OK</h1></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+		this.adminWelcome.append('<button id="admin-cancel" type="button"><h1>Cancel</h1></button>');
+
+		this.okButton = $('#admin-ok');
+		this.cancelButton = $('#admin-cancel');
+
+		this.cancelButton.click(function() {
+			adminView.toggleAdminMode();
+		});
+
+		this.okButton.click(function() {
+			var updatedName = $('#admin-name').val();
+			var updatedImageURL = $('#admin-image-url').val();
+			var updatedClicks = $('#admin-clicks').val();
+			octopus.updateActiveCat(updatedName,updatedImageURL,updatedClicks);
+			adminView.toggleAdminMode();
+			activeCatView.render();
+		});
+
 	},
 
 	hideAdminMode: function() {
@@ -126,20 +141,21 @@ var adminView = {
 	},
 
 	setButtonListener: function() {
-		this.adminButton.click((function(button) {
-			return function() {
+		this.adminButton.click(function() {
+			adminView.toggleAdminMode();
+		});
+	},
 
-				button.empty();
+	toggleAdminMode: function() {
+		this.adminButton.empty();
 				var mode = octopus.getAdminModeStatus() ? "OFF" : "ON";
 				octopus.toggleAdminModeStatus();
-				button.append('<h1>Admin Mode: ' + mode + '</h1>');
+				this.adminButton.append('<h1>Admin Mode: ' + mode + '</h1>');
 				if(mode === "ON") {
 					adminView.showAdminMode();
 				} else {
 					adminView.hideAdminMode();
 				}
-			};
-		})(this.adminButton));
 	}
 };
 
@@ -154,6 +170,13 @@ var octopus = {
 
 	setActiveCat: function(cat) {
 		model.activeCat = cat;
+	},
+
+	updateActiveCat: function(name,imageURL,clicks) {
+		console.log("HERE:" + name + ", " + imageURL + ", " + clicks);
+		model.activeCat.name = name;
+		model.activeCat.imageURL = imageURL;
+		model.activeCat.clicks = clicks;
 	},
 
 	updateClicks: function() {
