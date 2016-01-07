@@ -40,14 +40,27 @@ var listView = {
 	},
 
 	render: function() {
+
+		activeCatView.init();
+
+
 		var cats = octopus.getCats();
+
+		// randCat used to set a random cat to show on startup
+		var randCat = Math.floor(Math.random() * 5);
+
 		for (i = 0; i < cats.length; i++) {
 			var cat = cats[i];
-
 			this.catList.append('<div class="cat" id="' + cat.name + '"><h2>' + cat.name + '</h2></div>');
 
-			// using an IFFE and the jQuery .click() method
+			// set a random cat to show on startup
+			if(randCat === i) {
+				octopus.setActiveCat(cat);
+				activeCatView.render();
+			}
+
 			jQueryElem = $('#' + cat.name);
+			// using an IFFE and the jQuery .click() method
 			jQueryElem.click((function (meow) {
 				return function() {
 					octopus.setActiveCat(meow);
@@ -98,6 +111,14 @@ var adminView = {
 	showAdminMode: function() {
 		this.adminWelcome.empty();
 		this.adminWelcome.append('<p id="admin-welcome">Welcome to Admin Mode.</p>');
+		this.adminWelcome.append('<p id="admin-welcome2">Change the details of your cat.</p>');
+
+		var activeCat = octopus.getActiveCat();
+		console.log(activeCat.name);
+
+		//this.adminWelcome.append('<h1>Name</h1><input type="text" name="name" value=' + activeCat.name +'>');
+		this.adminWelcome.append('<h1>Image</h1><input type="text" name="image-url" value="someURLstring">');
+		this.adminWelcome.append('<h1>Clicks</h1><input type="text" name="clicks" value="numClicks">');
 	},
 
 	hideAdminMode: function() {
@@ -149,9 +170,10 @@ var octopus = {
 	},
 
 	init: function() {
+
 		listView.init();
-		activeCatView.init();
 		adminView.init();
+
 	}
 };
 
